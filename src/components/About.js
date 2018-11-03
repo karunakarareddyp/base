@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { navsSelector } from '../reducers/nav';
 import { getNavData, reset } from '../actions/nav';
+import AsyncContainer from '../util/component/AsyncContainer';
 
 class About extends Component {
     componentWillMount() {
@@ -12,10 +13,10 @@ class About extends Component {
     }
 
     render() {
-        const { navData } = this.props;
+        const { navData, loadingNavData } = this.props;
         console.log('Received Data =>', navData);
         return (
-            <div>About Page description -> {navData ? navData.title : ''}</div>
+            <AsyncContainer loading={loadingNavData}><div>About Page description -> {navData ? navData.title : ''}</div></AsyncContainer>
         );
     }
 }
@@ -24,6 +25,7 @@ About.propTypes = {
     getNavData: PropTypes.func.isRequired,
     reset: PropTypes.func.isRequired,
     navData: PropTypes.object,
+    loadingNavData: PropTypes.bool,
 };
 
 const mapStateToProps = state => ({
