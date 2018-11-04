@@ -1,2 +1,4 @@
 # base
-Base setup for any project. Created with React, Redux, Routes, eslint.
+Base MERN setup for any project to start. 
+
+TODO - Routes not working as expected
