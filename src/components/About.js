@@ -15,8 +15,13 @@ class About extends Component {
     render() {
         const { navData, loadingNavData } = this.props;
         console.log('Received Data =>', navData);
+        const data = navData || [];
         return (
-            <AsyncContainer loading={loadingNavData}><div>About Page description -> {navData ? navData.title : ''}</div></AsyncContainer>
+            <AsyncContainer loading={loadingNavData}>
+                <div>Employees data <ul>{
+                    data.map(emp => <li key={emp.id}>{emp.name}</li>)
+                }</ul></div>
+            </AsyncContainer>
         );
     }
 }
@@ -24,7 +29,7 @@ class About extends Component {
 About.propTypes = {
     getNavData: PropTypes.func.isRequired,
     reset: PropTypes.func.isRequired,
-    navData: PropTypes.object,
+    navData: PropTypes.array,
     loadingNavData: PropTypes.bool,
 };
 

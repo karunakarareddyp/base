@@ -7,6 +7,7 @@ const DIST_DIR = path.resolve(__dirname, 'dist');
 module.exports = {
     mode: 'development',
     entry: `${SRC_DIR}/index.js`,
+    // target: 'node',
     module: {
         rules: [
             {
@@ -45,9 +46,13 @@ module.exports = {
         }),
     ],
     devServer: {
-        contentBase: './dist',
+        contentBase: path.join(__dirname, 'dist'),
         hot: true,
         publicPath: '/',
         inline: true,
+        proxy: {
+            '/api/*': 'http://localhost:5000',
+        },
     },
+
 };
