@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import BrowseRouter from 'react-router-dom/BrowserRouter';
+import { withRouter } from 'react-router-dom';
+
 import Routes from '../Routes';
 import Nav from './Nav';
 
 class App extends Component {
     render() {
         return (
-            <BrowseRouter>
-                <React.Fragment>
-                    <Nav/>
-                    <Routes />
-                </React.Fragment>
-            </BrowseRouter>
+            <div>
+                <Nav/>
+                <Routes {...this.props} />
+            </div>
         );
     }
 }
 
-export default connect(state => state)(App);
+const mapStateToProps = state => ({ ...state });
+
+export default withRouter(connect(mapStateToProps)(App));

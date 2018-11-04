@@ -2,7 +2,8 @@ import createActionReducer, { createSelector, getInitialState } from '../util/cr
 import { FETCH_NAV_DETAILS, RESET } from '../constants';
 
 const initialState = {
-    ...getInitialState('navData'),
+    // ...getInitialState('navData'),
+    navData: [],
 };
 
 const ACTION_HANDLERS = {

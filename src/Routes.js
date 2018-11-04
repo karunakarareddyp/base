@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import {
     Route, Switch, Redirect, withRouter,
 } from 'react-router-dom';
@@ -15,7 +16,6 @@ const Routes = ({ match }) => (
     <Switch>
         <Route exact path={buildUrl(match.url, '/')} component={Home}/>
         <Route path={buildUrl(match.url, '/about')} component={About}/>
-        <Redirect to='/'/>
     </Switch>
 );
 
@@ -25,4 +25,6 @@ Routes.propTypes = {
     }),
 };
 
-export default withRouter(Routes);
+const mapStateToProps = state => ({ ...state });
+
+export default withRouter(connect(mapStateToProps)(Routes));
