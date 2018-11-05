@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { isFunction } from 'underscore';
+import PulseLoader from 'react-spinners/PulseLoader';
 
 function AsyncContainer({ loading, children, render }) {
     if (loading) {
-        return <div><h4>Loading...</h4></div>;
+        return <PulseLoader />;
     }
     const babies = children || render;
     return isFunction(babies) ? babies() : babies;
